@@ -18,6 +18,8 @@ const gitCheckout = `git clone --depth 1 https://github.com/homfarnam/React-temp
 
 const installDepsComamnd = `cd ${repoName} && npm install`
 
+console.log("------")
+
 console.log(`Cloning the repository with name ${repoName}`)
 
 const checkedOut = runCommand(gitCheckout)
