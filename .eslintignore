@@ -4,3 +4,4 @@
 **/public/static/*
 **/*.graphql.d.ts
 *.graphqls.d.ts
+**/bin/*
