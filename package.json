@@ -1,7 +1,6 @@
 {
   "name": "@homfarnam/react-template-cra",
   "version": "0.1.0",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git://github.com/homfarnam/React-template---CRA.git"
