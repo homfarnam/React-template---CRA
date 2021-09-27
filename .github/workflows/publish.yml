@@ -46,9 +46,10 @@ jobs:
       - run: npm ci
 #       - run: npm run semantic-release
       
-      - uses: JS-DevTools/npm-publish@v1
-#         with:
-#           token: ${{ secrets.NPM_TOKEN }}
-        env:
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
           token: ${{ secrets.NPM_TOKEN }}
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         env:
+#           token: ${{ secrets.NPM_TOKEN }}
+# #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
