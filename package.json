@@ -1,6 +1,6 @@
 {
-  "name": "@homfarnam/react-template-cra-farnam",
-  "version": "0.1.0",
+  "name": "@homfarnam/create-react-template-farnam",
+  "version": "0.2.0",
   "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
