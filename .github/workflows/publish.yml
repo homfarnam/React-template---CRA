@@ -39,7 +39,8 @@ jobs:
     if: ${{ github.ref == 'refs/heads/master' }}
     needs: [quality]
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -50,7 +51,7 @@ jobs:
       - name: NPM Publish
         uses: JS-DevTools/npm-publish@v1
         with:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
 #         env:
 #           token: ${{ secrets.NPM_TOKEN }}
 # #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
