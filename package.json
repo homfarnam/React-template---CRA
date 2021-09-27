@@ -1,9 +1,10 @@
 {
-  "name": "@homfarnam/react-template-cra",
+  "name": "@homfarnam/react-template-cra-farnam",
   "version": "0.1.0",
+  "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/homfarnam/React-template---CRA.git"
+    "url": "https://github.com/homfarnam/React-template---CRA.git"
   },
   "dependencies": {
     "@craco/craco": "^6.3.0",
