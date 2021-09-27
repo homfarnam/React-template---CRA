@@ -8,7 +8,7 @@ on:
     branches:
       - master
   pull_request:
-    branches: "*"
+    branches: ["*"]
 
 jobs:
   quality:
@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-#         node-version: [12.x, 14.x, 16.x]
+        #         node-version: [12.x, 14.x, 16.x]
         node-version: [14.x, 16.x]
 
         os: ["ubuntu-latest"]
@@ -33,25 +33,24 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
     # - run: npm test
+#   publish:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.ref == 'refs/heads/master' }}
+#     needs: [quality]
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v2
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#       - run: npm ci
+#       #       - run: npm run semantic-release
 
-  publish:
-    runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/master' }}
-    needs: [quality]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-#       - run: npm run semantic-release
-      
-      - name: NPM Publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
-#         env:
-#           token: ${{ secrets.NPM_TOKEN }}
-# #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - name: NPM Publish
+#         uses: JS-DevTools/npm-publish@v1
+#         with:
+#           token: ${{ secrets.NPM_AUTH_TOKEN }}
+# #         env:
+# #           token: ${{ secrets.NPM_TOKEN }}
+# # #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

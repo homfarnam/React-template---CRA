@@ -9,6 +9,9 @@
   "engines": {
     "node": ">=13"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@homfarnam"
+  },
   "dependencies": {
     "@craco/craco": "^5.9.0",
     "@testing-library/jest-dom": "^5.14.1",
