@@ -45,10 +45,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
 #       - run: npm run semantic-release
-      - name: NPM Publish
+      
       - uses: JS-DevTools/npm-publish@v1
-        with:
+      - name: NPM Publish
+#         with:
+#           token: ${{ secrets.NPM_TOKEN }}
+        env:
           token: ${{ secrets.NPM_TOKEN }}
-#         env:
-#           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
