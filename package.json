@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/homfarnam/React-template---CRA.git"
   },
+  "engines": {
+    "node": ">=13"
+  },
   "dependencies": {
     "@craco/craco": "^5.9.0",
     "@testing-library/jest-dom": "^5.14.1",

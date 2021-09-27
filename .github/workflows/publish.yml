@@ -16,7 +16,9 @@ jobs:
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
+ 
         os: ["ubuntu-latest"]
+ 
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -43,3 +45,6 @@ jobs:
           cache: "npm"
       - run: npm ci
       - run: npm run semantic-release
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
