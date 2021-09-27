@@ -47,7 +47,6 @@ jobs:
 #       - run: npm run semantic-release
       
       - uses: JS-DevTools/npm-publish@v1
-      - name: NPM Publish
 #         with:
 #           token: ${{ secrets.NPM_TOKEN }}
         env:
