@@ -14,12 +14,7 @@ jobs:
         with:
           node-version: 14
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+ 
           
   publish-npm:
     needs: build
@@ -34,55 +29,22 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
 
-      #       - name: Create Release
-      #         id: create_release
-      #         uses: actions/create-release@v1
-      #         env:
-      #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      #         with:
-      #           tag_name: ${{ github.ref }}
-      #           release_name: Release ${{ github.ref }}
-      #           body: |
-      #             Changes in this Release
-      #             - First Change
-      #             - Second Change
-      #           draft: false
-      #           prerelease: false
+ 
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Publish Next
+      - name: Publish to NPM
+      
         run: |
           if [ "$GIT_REF" = "refs/heads/master" ] ; then
-            
+            npm version patch --no-git-tag-version
             npm run build
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-            npm publish 
+            npm publish -q
           fi
         env:
           GIT_REF: ${{ github.ref }}
           NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
-#       - run: npm ci
-#       - run: npm publish --access=public
-#         env:
-#           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-
-#   publish-gpr:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       packages: write
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 14
-#           registry-url: https://npm.pkg.github.com/
-#       - run: npm ci
-#       - run: npm version patch --no-git-tag-version
-#       - run: npm publish --access public
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+ 
