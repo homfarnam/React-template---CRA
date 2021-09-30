@@ -47,22 +47,25 @@ jobs:
 
 
       - name: Publish to NPM
-#         run: npm publish --access=public
-
-        run: |
-          if [ "$GIT_REF" = "refs/heads/master" ] ; then
+ 
+      - run: npm ci
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+#         run: |
+#           if [ "$GIT_REF" = "refs/heads/master" ] ; then
              
-            npm run build
-            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-            npm publish --access=public
-          fi
-        env:
-          GIT_REF: ${{ github.ref }}
-          NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
+#             npm run build
+#             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+#             npm publish --access=public
+#           fi
+#         env:
+#           GIT_REF: ${{ github.ref }}
+#           NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
 
 
-      - name: Push to github
-        run: git push
-        env:
-          # The secret is passed automatically. Nothing to configure.
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#       - name: Push to github
+#         run: git push
+#         env:
+#           # The secret is passed automatically. Nothing to configure.
+#           github-token: ${{ secrets.GITHUB_TOKEN }}
