@@ -30,19 +30,28 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
+          
+      - name: Create GitHub release
+        uses: Roang-zero1/github-create-release-action@master
+        with:
+          version_regex: ^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1.8.9
+#       - name: Create Release
+#         id: create_release
+#         uses: actions/create-release@v1
 #         env:
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-        with:
-          tartifacts: "release.tar.gz,foo/*.txt"
-          bodyFile: "body.md"
-          token: ${{ secrets.GITHUB_TOKEN }}
-           
-          draft: false
-          prerelease: false
+#         with:
+#           tag_name: ${{ github.ref }}
+#           release_name: Release ${{ github.ref }}
+#           body: |
+#             Changes in this Release
+#             - First Change
+#             - Second Change
+#           draft: false
+#           prerelease: false
 
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
