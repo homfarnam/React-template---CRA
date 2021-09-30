@@ -47,7 +47,8 @@
     "eject": "react-scripts eject",
     "format": "prettier --write .",
     "semantic-release": "semantic-release --branches master",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "release": "standard-version"
   },
   "eslintConfig": {
     "extends": [
