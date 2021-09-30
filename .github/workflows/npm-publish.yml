@@ -14,25 +14,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
-
-      - name: Tag and prepare release
-        id: tag_and_prepare_release
-        uses: K-Phoen/semver-release-action@master
-        with:
-          release_branch: master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload release notes
-        if: steps.tag_and_prepare_release.outputs.tag
-        uses: Roang-zero1/github-create-release-action@master
-        with:
-          created_tag: ${{ steps.tag_and_prepare_release.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -46,56 +27,19 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
 
-      #       - name: Create Release
-      #         id: create_release
-      #         uses: actions/create-release@v1
-      #         env:
-      #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-      #         with:
-      #           tag_name: ${{ github.ref }}
-      #           release_name: Release ${{ github.ref }}
-      #           body: |
-      #             Changes in this Release
-      #             - First Change
-      #             - Second Change
-      #           draft: false
-      #           prerelease: false
-
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-      - name: Publish Next
-        run: ../../bin/script npm publish -q
-        # run: |
-        #   if [ "$GIT_REF" = "refs/heads/master" ] ; then
+      - name: Publish to NPM
 
-        #     npm run build
-        #     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-        #     npm publish
-        #   fi
+        run: |
+          if [ "$GIT_REF" = "refs/heads/master" ] ; then
+            npm version --no-git-tag-version
+            
+            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+            npm publish -q
+          fi
         env:
           GIT_REF: ${{ github.ref }}
           NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
-#       - run: npm ci
-#       - run: npm publish --access=public
-#         env:
-#           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-
-#   publish-gpr:
-#     needs: build
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       packages: write
-#     steps:
-#       - uses: actions/checkout@v2
-#       - uses: actions/setup-node@v2
-#         with:
-#           node-version: 14
-#           registry-url: https://npm.pkg.github.com/
-#       - run: npm ci
-#       - run: npm version patch --no-git-tag-version
-#       - run: npm publish --access public
-#         env:
-#           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
