@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           # "ref" specifies the branch to check out.
           # "github.event.release.target_commitish" is a global variable and specifies the branch the release targeted
