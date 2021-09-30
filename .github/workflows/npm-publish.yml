@@ -36,10 +36,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+           
           draft: false
           prerelease: false
 
@@ -49,15 +46,15 @@ jobs:
 
       - name: Publish Next
         run: |
-          if [ "$GIT_REF" = "refs/heads/dev" ] ; then
+          if [ "$GIT_REF" = "refs/heads/master" ] ; then
             
             npm run build
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-            npm publish --access public
+            npm publish 
           fi
         env:
           GIT_REF: ${{ github.ref }}
-          NPM_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+          NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
 #       - run: npm ci
 #       - run: npm publish --access=public
 #         env:
