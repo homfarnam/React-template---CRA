@@ -48,8 +48,10 @@ jobs:
 
       - name: Publish to NPM
  
-      - run: npm ci
+        run: npm ci
+        
       - run: npm publish --access public
+      
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 #         run: |
