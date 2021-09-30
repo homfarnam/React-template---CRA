@@ -39,7 +39,7 @@ jobs:
       
         run: |
           if [ "$GIT_REF" = "refs/heads/master" ] ; then
-            npm version patch --no-git-tag-version
+            npm run semantic-release
             npm run build
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
             npm publish -q
