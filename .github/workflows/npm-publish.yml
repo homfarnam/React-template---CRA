@@ -38,7 +38,7 @@ jobs:
              
             npm run build
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-            npm publish --access public
+            npm publish --access=public
           fi
         env:
           GIT_REF: ${{ github.ref }}
