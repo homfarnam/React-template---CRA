@@ -32,10 +32,10 @@ jobs:
         run: npm ci
 
       - name: Publish to NPM
-
+#  npm run release
         run: |
           if [ "$GIT_REF" = "refs/heads/master" ] ; then
-            npm run release  
+             
 
             echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
             npm publish -q
