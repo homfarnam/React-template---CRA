@@ -16,7 +16,7 @@ const repoName = process.argv[2]
 
 const gitCheckout = `git clone --depth 1 https://github.com/homfarnam/React-template---CRA ${repoName}`
 
-const installDepsComamnd = `cd ${repoName} && npm install`
+const installDepsComamnd = `cd ${repoName} && npm install --quite`
 
 console.log("------")
 
