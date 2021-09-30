@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Publish to NPM
-        run: ./script npm publish -q
+        run: ./bin/script npm publish -q
 
         # run: |
         #   if [ "$GIT_REF" = "refs/heads/master" ] ; then
