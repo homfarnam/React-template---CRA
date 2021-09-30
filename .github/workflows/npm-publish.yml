@@ -32,15 +32,14 @@ jobs:
         run: npm ci
 
       - name: Publish to NPM
-        run: ./bin/script npm publish -q
 
-        # run: |
-        #   if [ "$GIT_REF" = "refs/heads/master" ] ; then
-        #     npm version --no-git-tag-version
+        run: |
+          if [ "$GIT_REF" = "refs/heads/master" ] ; then
+            standard-version  
 
-        #     echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-        #     npm publish -q
-        #   fi
+            echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+            npm publish -q
+          fi
         env:
           GIT_REF: ${{ github.ref }}
           NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
