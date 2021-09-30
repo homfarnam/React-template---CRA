@@ -19,7 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@master
+      - uses: actions/checkout@v2
+        with:
+          # "ref" specifies the branch to check out.
+          # "github.event.release.target_commitish" is a global variable and specifies the branch the release targeted
+          ref: ${{ github.event.release.target_commitish }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -30,6 +34,17 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
+        
+        # set up git since we will later push to the repo
+      
+      
+      - run: git config --global user.name "Farnam"
+        
+      - run: git config --global user.email "homfarnam@gmail.com"
+      
+      - run: npm version ${{ github.event.release.tag_name }}
+
+
 
       - name: Publish to NPM
         run: npm publish --access=public
@@ -44,3 +59,10 @@ jobs:
         env:
           GIT_REF: ${{ github.ref }}
           NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
+
+
+      - name: Push to github
+        run: git push
+        env:
+          # The secret is passed automatically. Nothing to configure.
+          github-token: ${{ secrets.GITHUB_TOKEN }}
