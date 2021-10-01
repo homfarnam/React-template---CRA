@@ -49,6 +49,7 @@
     "semantic-release": "semantic-release --branches master",
     "commit": "git-cz",
     "release": "standard-version",
+    "release2": "release-it",
     "publish-npm": "npm publish --access public --ignore-scripts --@farnam:registry='https://registry.npmjs.org'"
   },
   "eslintConfig": {
@@ -88,6 +89,7 @@
     "eslint-plugin-tailwindcss": "^1.14.3",
     "postcss": "^8.3.6",
     "prettier": "^2.4.1",
+    "release-it": "^14.11.6",
     "semantic-release": "^18.0.0",
     "standard-version": "^9.3.1",
     "tailwindcss": "^2.2.15",
