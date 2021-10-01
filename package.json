@@ -1,6 +1,6 @@
 {
   "name": "@farnam/create-react-ts-tailwind-starter",
-  "version": "0.1.0",
+  "version": "0.0.2",
   "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
@@ -97,6 +97,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "version": "0.0.2"
+  }
 }
