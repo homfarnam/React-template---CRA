@@ -1,6 +1,6 @@
 {
   "name": "@farnam/create-react-ts-tailwind-starter",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "bin": "./bin/cli.js",
   "repository": {
     "type": "git",
