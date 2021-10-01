@@ -27,20 +27,20 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
 
-#       - name: Install dependencies
-#         if: steps.cache.outputs.cache-hit != 'true'
-#         run: npm ci
+      #       - name: Install dependencies
+      #         if: steps.cache.outputs.cache-hit != 'true'
+      #         run: npm ci
 
       - run: git config --global user.name "Farnam"
-        
+
       - run: git config --global user.email "homfarnam@gmail.com"
 
       - name: Publish to NPM
-      
+
         run: |
           echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
           echo $(cat ~/.npmrc)
-          npm version patch --force
+           
           npm run publish-npm
 
         # run: |
