@@ -47,8 +47,7 @@
     "format": "prettier --write .",
     "semantic-release": "semantic-release --branches master",
     "commit": "git-cz",
-    "release": "standard-version",
-    "release2": "release-it",
+    "release": "release-it",
     "publish-npm": "npm publish --access public --ignore-scripts --@farnam:registry='https://registry.npmjs.org'"
   },
   "eslintConfig": {
