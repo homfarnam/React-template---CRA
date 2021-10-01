@@ -35,6 +35,7 @@ jobs:
         run: |
           echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
           echo $(cat ~/.npmrc)
+          npm version patch --force
           npm run publish-npm
 
         # run: |
