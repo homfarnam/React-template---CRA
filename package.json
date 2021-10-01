@@ -1,7 +1,8 @@
 {
   "name": "@farnam/create-react-ts-tailwind",
-  "version": "0.1.0",
-  "bin": "./bin/cli.js",
+  "bin": {
+    "create-react-ts-tailwind": "bin/cli.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/homfarnam/React-template---CRA.git"
@@ -50,7 +51,6 @@
     "commit": "git-cz",
     "release": "standard-version",
     "publish-npm": "npm publish --access public --ignore-scripts --@farnam:registry='https://registry.npmjs.org'"
-
   },
   "eslintConfig": {
     "extends": [
@@ -98,5 +98,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "version": "0.0.1"
 }
