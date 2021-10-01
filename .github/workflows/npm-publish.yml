@@ -34,6 +34,7 @@ jobs:
       - name: Publish to NPM
         run: |
           echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+          echo $(cat ~/.npmrc)
           npm run publish-npm
 
         # run: |
