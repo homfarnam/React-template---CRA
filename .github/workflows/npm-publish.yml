@@ -27,13 +27,13 @@ jobs:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
 
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+#       - name: Install dependencies
+#         if: steps.cache.outputs.cache-hit != 'true'
+#         run: npm ci
 
       - name: Publish to NPM
         run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
+          echo "//registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN" >> ~/.npmrc
           echo $(cat ~/.npmrc)
           npm run publish-npm
 
@@ -46,4 +46,4 @@ jobs:
         #   fi
         env:
           GIT_REF: ${{ github.ref }}
-          NPM_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
+          NODE_AUTH_TOKEN: ${{secrets.AUTH_NPM}}
